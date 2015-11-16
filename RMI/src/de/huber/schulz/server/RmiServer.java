@@ -18,6 +18,9 @@ public class RmiServer implements RmiInterface {
 	}
 
 	public static void main(String... args) {
+		
+		System.setProperty("java.security.policy","file:///home/benutzer/java/jdk-8u60-linux-i586/jdk1.8.0_60/lib/security/java.policy");
+		
 		// Kontrolliert Zugriff auf System ressources from untrusted downloaded
 		// code running in the JVM
 		if (System.getSecurityManager() == null) {
@@ -32,14 +35,8 @@ public class RmiServer implements RmiInterface {
 					.exportObject(server, 0);
 			// Server in die lokale Registry eintragen
 			//Achtung: Default ist Localjost und Port 1099! 
-			//andernfalls muss man weitere Argumente übergeben
-			Registry registry;
-			if(LocateRegistry.getRegistry() == null){
-				registry = LocateRegistry.createRegistry(4711);
-			}
-			else{
-				registry = LocateRegistry.getRegistry(4711);
-			}
+			//andernfalls muss man weitere Argumente ï¿½bergeben
+			Registry  registry = LocateRegistry.createRegistry(1099);
 			registry.rebind(name, stub);
 			System.out.println("Server bound! :P");
 			
