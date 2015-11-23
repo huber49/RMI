@@ -23,7 +23,7 @@ public class TestClient {
 			registry = LocateRegistry.getRegistry(1099); // hier ggf. Hostnamen statt #
 			System.out.println("Registry = " + registry);
 			RmiInterface serv = (RmiInterface) registry.lookup(name);
-			String result = serv.buildHelloString("Hansi");
+			String result = serv.buildHelloString("Hans");
 			System.out.println(result);
 		} catch (RemoteException | NotBoundException e) {
 			// TODO Auto-generated catch block
